@@ -3,4 +3,8 @@ project(Projet_Agenda C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Projet_Agenda main.c cmake-build-debug/LIste.c cmake-build-debug/LIste.h cmake-build-debug/Cell.c cmake-build-debug/Cell.h)
+add_executable(Projet_Agenda main.c
+        cell.c
+        cell.h
+        list.c
+        list.h)
