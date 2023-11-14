@@ -14,6 +14,11 @@ int main() {
     insertion_en_ordre(list,4,6);
     insertion_en_ordre(list,1,7);
     insertion_en_ordre(list,1,1000);
+    //display_cells_at_level(list,2);
+    display_all_levels(list);
+    printf("\n");
+    t_d_cell *cell1 = create_multi_level_cell(2, 4);
+    insertion_en_tete(list,cell1);
     display_all_levels(list);
     return 0;
 
