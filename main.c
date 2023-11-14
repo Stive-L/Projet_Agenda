@@ -9,8 +9,11 @@ int main() {
     t_d_cell *cell = create_multi_level_cell(5, 5);
 
     insertion_en_tete(list,cell);
-
-
+    //display_all_levels(list);
+    insertion_en_ordre(list,2,3);
+    insertion_en_ordre(list,4,6);
+    insertion_en_ordre(list,1,7);
+    insertion_en_ordre(list,1,1000);
     display_all_levels(list);
     return 0;
 

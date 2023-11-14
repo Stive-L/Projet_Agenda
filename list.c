@@ -20,6 +20,7 @@ t_d_list *create_multi_level_list(int max_levels) {
     }
 
     // Initialiser les têtes de chaque niveau
+
     for (int i = 0; i < max_levels; i++) {
         list->head[i] = create_multi_level_cell(0, i + 1); // 0 est la valeur de la cellule de base
     }
@@ -57,7 +58,7 @@ void display_cells_at_level(t_d_list *list, int level) {
     printf("\n");
 }
 void display_all_levels(t_d_list *list) {
-    for (int level = 0; level <= list->max_levels; level++) {
+    for (int level = 0; level < list->max_levels; level++) {
         printf("[list head_%d @ -] --> ", level);
 
         t_d_cell *courant = list->head[level]->next[level];
@@ -75,32 +76,13 @@ void insertion_en_ordre(t_d_list *list, int level, int value) {
         // Créez une nouvelle cellule à insérer
         t_d_cell *newCell = create_multi_level_cell(value, level);
 
-        // Commencez la recherche depuis le niveau supérieur (le niveau maximum)
-        int currentLevel = list->max_levels;
+        // Initialisez la recherche au niveau demandé
+        t_d_cell *current = list->head[level];
 
-        // Initialisez la recherche au niveau 0
-        t_d_cell *current = list->head[currentLevel];
-
-        while (currentLevel >= 0) {
-            // Avancez au niveau actuel jusqu'à ce que vous trouviez la bonne position
-            while ((current->next[currentLevel] != NULL) && (current->next[currentLevel]->value < value)) {
-                current = current->next[currentLevel];
-            }
-
-            if (currentLevel <= level) {
-                // Insérez la nouvelle cellule au niveau actuel
-                newCell->next[currentLevel] = current->next[currentLevel];
-                current->next[currentLevel] = newCell;
-            }
-
-            if (currentLevel == 0) {
-                // Passer au niveau inférieur
-                currentLevel--;
-                current = list->head[currentLevel];
-            } else {
-                // Descendez d'un niveau
-                currentLevel--;
-                current = current->next[currentLevel];
-            }
+        while (current->next[level] != NULL && current->next[level]->value < value) {
+            current = current->next[level];
         }
-    }
+
+        newCell->next[level] = current->next[level];
+        current->next[level] = newCell;
+}
