@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "cell.h"
 t_d_cell *create_multi_level_cell(int value, int level) {
-    t_d_cell *cell = (t_d_cell *)malloc(sizeof(t_d_cell));
+    t_d_cell *cell = malloc(sizeof(t_d_cell));
     if (cell == NULL) {
         // Gérer les erreurs de mémoire
         return NULL;
@@ -13,7 +13,7 @@ t_d_cell *create_multi_level_cell(int value, int level) {
 
     cell->value = value;
     cell->level = level;
-    cell->next = (t_d_cell **)malloc(level * sizeof(t_d_cell *));
+    cell->next = malloc(level * sizeof(t_d_cell *));
     if (cell->next == NULL) {
         // Gérer les erreurs de mémoire
         free(cell);
