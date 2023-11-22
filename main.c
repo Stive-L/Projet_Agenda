@@ -6,9 +6,9 @@ int main() {
     printf("Hello, World!\n");
     int max_levels = 5;
     t_d_list *list = create_multi_level_list(max_levels);
-    //t_d_cell *cell = create_multi_level_cell(1, 5);
-    //insertion_en_tete(list,cell);
-    //display_all_levels(list);
+    t_d_cell *cell = create_multi_level_cell(1, 5);
+    insertion_en_tete(list,cell);
+    display_all_levels(list);
     // Niveau 0
     insertion_en_ordre(list,0,18);
     insertion_en_ordre(list,0,25);
@@ -43,12 +43,20 @@ int main() {
     insertion_en_ordre(list,4,32);
     insertion_en_ordre(list,4,59);
     display_all_levels(list);
-    /*
-    printf("\n");
-    t_d_cell *cell1 = create_multi_level_cell(2, 4);
-    insertion_en_tete(list,cell1);
-    display_all_levels(list);
-    */
+    cell = recherche_du_plus_haut(list, 25);
+
+
+        /*
+         cell = recherche_0(list, 18);
+         */
+        printf("%d", cell->value);
+         /*
+        /*
+        printf("\n");
+        t_d_cell *cell1 = create_multi_level_cell(2, 4);
+        insertion_en_tete(list,cell1);
+        display_all_levels(list);
+        */
     return 0;
 
 }
