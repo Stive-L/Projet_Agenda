@@ -41,15 +41,15 @@ void insertion_en_tete(t_d_list *list, t_d_cell *cell) {
         list->head[i]->next[i] = cell;
     }
 }
-void display_cells_at_level(t_d_list *list, int level) {
-    if (level < 0 || level >= list->max_levels) {
+void display_cells_at_level(t_d_list list, int level) {
+    if (level < 0 || level >= list.max_levels) {
         // niveau invalide
         return;
     }
 
     printf("Cellules au niveau %d : ", level);
 
-    t_d_cell *courant = list->head[level]->next[level];
+    t_d_cell *courant = list.head[level]->next[level];
     while (courant != NULL) {
         printf("%d ", courant->value);
         courant = courant->next[level];
@@ -57,12 +57,12 @@ void display_cells_at_level(t_d_list *list, int level) {
 
     printf("\n");
 }
-void display_all_levels(t_d_list *list) {
-    for (int level = 0; level < list->max_levels; level++) {
+void display_all_levels(t_d_list list) {
+    for (int level = 0; level < list.max_levels; level++) {
         printf("[list head_%d @-]", level);
 
-        t_d_cell *courant = list->head[level]->next[level];
-        t_d_cell *niv_premier = list->head[0]->next[0]; // On initialise un pointeur qui pointe sur le niveau 0
+        t_d_cell *courant = list.head[level]->next[level];
+        t_d_cell *niv_premier = list.head[0]->next[0]; // On initialise un pointeur qui pointe sur le niveau 0
 
         // Traitement pour le niveau 0
         if (level == 0) {
@@ -100,18 +100,28 @@ void insertion_en_ordre(t_d_list *list, int level, int value) {
 
     newCell->next[level] = current->next[level];
     current->next[level] = newCell;
+
+    // Mettre à jour les niveaux inférieurs
+    for (int i = level-1; i >= 0;i--){
+        t_d_cell * current = list->head[i];
+        while (current->next[i] != NULL && current->next[i]->value < value ){
+            current = current->next[i];
+        }
+        newCell->next[i] = current->next[i];
+        current->next[i] = newCell;
+    }
 }
-t_d_cell *recherche_0(t_d_list *list, int value) {
-    t_d_cell *current = list->head[0];
+t_d_cell *recherche_0(t_d_list list, int value) {
+    t_d_cell *current = list.head[0];
     while (current != NULL && current->value != value) {
         current = current->next[0];
     }
     return current;
 }
-t_d_cell *recherche_du_plus_haut(t_d_list *list, int value) {
-    int currentLevel = list->max_levels - 1;
+t_d_cell *recherche_du_plus_haut(t_d_list list, int value) {
+    int currentLevel = list.max_levels - 1;
 
-    t_d_cell *current = list->head[currentLevel];
+    t_d_cell *current = list.head[currentLevel];
     while (currentLevel >= 0) {
         // Avancez au niveau actuel jusqu'à ce que trouvez la bonne position
         while (current != NULL && current->value < value) {
@@ -126,7 +136,7 @@ t_d_cell *recherche_du_plus_haut(t_d_list *list, int value) {
         // Si la valeur n'est pas trouvée, descendez d'un niveau
         currentLevel--;
         if (currentLevel >= 0) {
-            current = list->head[currentLevel];
+            current = list.head[currentLevel];
         }
     }
 
