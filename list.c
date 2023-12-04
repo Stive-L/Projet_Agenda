@@ -101,14 +101,16 @@ void insertion_en_ordre(t_d_list *list, int level, int value) {
     newCell->next[level] = current->next[level];
     current->next[level] = newCell;
 }
-t_d_cell *recherche_0(t_d_list *list, int value) {
+
+int recherche_0(t_d_list *list, int value) {
     t_d_cell *current = list->head[0];
     while (current != NULL && current->value != value) {
         current = current->next[0];
     }
-    return current;
+    return (current != NULL) ? 1 : 0; // Retourne 1 si la valeur est trouvée, sinon 0
 }
-t_d_cell *recherche_du_plus_haut(t_d_list *list, int value) {
+
+int recherche_du_plus_haut(t_d_list *list, int value) {
     int currentLevel = list->max_levels - 1;
 
     t_d_cell *current = list->head[currentLevel];
@@ -120,7 +122,7 @@ t_d_cell *recherche_du_plus_haut(t_d_list *list, int value) {
 
         // Si la valeur est trouvée au niveau actuel
         if (current != NULL && current->value == value) {
-            return current; // Retournez la cellule correspondante
+            return 1; // Retournez 1 si la valeur est trouvée
         }
 
         // Si la valeur n'est pas trouvée, descendez d'un niveau
@@ -130,5 +132,5 @@ t_d_cell *recherche_du_plus_haut(t_d_list *list, int value) {
         }
     }
 
-    return NULL;
+    return 0; // Retournez 0 si la valeur n'est pas trouvée
 }

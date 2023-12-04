@@ -7,4 +7,4 @@ add_executable(Projet_Agenda main.c
         cell.c
         cell.h
         list.c
-        list.h)
+        list.h timer.c timer.h contact.c contact.h)
