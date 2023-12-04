@@ -9,6 +9,12 @@
 #ifndef PROJET_AGENDA_CONTACT_H
 #define PROJET_AGENDA_CONTACT_H
 
+char *scanString(void);
+
+typedef struct Contact {
+    char* nom;
+    char* prenom;
+} Contact;
 
 typedef struct {
     int jour;
@@ -28,12 +34,27 @@ typedef struct {
     Heure heure_debut;
     Heure duree;
     char* objet;
-    struct RendezVous* suivant;
+    //struct RendezVous* suivant;
 } RendezVous;
-typedef struct Contact {
-    char* nom;
-    char* prenom;
-} Contact;
+
+/*
+typedef struct RendezVousChaine{
+    RendezVous rdv;
+    struct RendezVousChaine *next
+}RendezVousChaine;
+ */
+
+typedef struct EntreeAgenda {
+    Contact contact;
+    struct RendezVous **rdv;
+}EntreeAgenda;
+
+// List à niveaux qui stock les entrees d'agenda
+typedef struct listagenda {
+    int max_levels;     // 4 max levels
+    EntreeAgenda ** head;
+} listagenda;
+/*
 typedef struct EntreeAgenda {
     Contact contact;
     RendezVous* listeRendezVous;  // Liste simplement chaînée de rendez-vous
@@ -51,5 +72,5 @@ typedef struct s_d_listagenda {
     int max_levels;             // Nombre maximum de niveaux dans la liste
     t_d_cellagenda** head;      // Tableau de pointeurs vers la tête de chaque niveau
 } t_d_listagenda;
-j
+*/
 #endif //PROJET_AGENDA_CONTACT_H
