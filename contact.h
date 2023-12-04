@@ -51,4 +51,5 @@ typedef struct s_d_listagenda {
     int max_levels;             // Nombre maximum de niveaux dans la liste
     t_d_cellagenda** head;      // Tableau de pointeurs vers la tête de chaque niveau
 } t_d_listagenda;
+j
 #endif //PROJET_AGENDA_CONTACT_H
