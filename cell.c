@@ -16,7 +16,7 @@ t_d_cell *create_multi_level_cell(int value, int level) {
     cell->next = malloc(level * sizeof(t_d_cell *));
     if (cell->next == NULL) {
         // Gérer les erreurs de mémoire
-        free(cell);
+        //free(cell);
         return NULL;
     }
 

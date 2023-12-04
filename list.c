@@ -12,7 +12,7 @@ t_d_list *create_multi_level_list(int max_levels) {
     }
 
     list->max_levels = max_levels;
-    list->head = (t_d_cell **)malloc(max_levels * sizeof(t_d_cell *));
+    list->head = malloc(max_levels * sizeof(t_d_cell *));
     if (list->head == NULL) {
         // Gérer les erreurs de mémoire
         free(list);
@@ -22,7 +22,7 @@ t_d_list *create_multi_level_list(int max_levels) {
     // Initialiser les têtes de chaque niveau
 
     for (int i = 0; i < max_levels; i++) {
-        list->head[i] = create_multi_level_cell(0, i + 1); // 0 est la valeur de la cellule de base
+        list->head[i] = create_multi_level_cell(0, i+1); // 0 est la valeur de la cellule de base
     }
 
     return list;
@@ -89,20 +89,13 @@ void display_all_levels(t_d_list list) {
 
 void insertion_en_ordre(t_d_list *list, int level, int value) {
     // Créez une nouvelle cellule à insérer
-    t_d_cell *newCell = create_multi_level_cell(value, level);
+    t_d_cell *newCell = create_multi_level_cell(value, list->max_levels);
 
     // Initialisez la recherche au niveau demandé
-    t_d_cell *current = list->head[level];
-
-    while (current->next[level] != NULL && current->next[level]->value < value) {
-        current = current->next[level];
-    }
-
-    newCell->next[level] = current->next[level];
-    current->next[level] = newCell;
+    //t_d_cell *current = list->head[level];
 
     // Mettre à jour les niveaux inférieurs
-    for (int i = level-1; i >= 0;i--){
+    for (int i = level; i >= 0;i--){
         t_d_cell * current = list->head[i];
         while (current->next[i] != NULL && current->next[i]->value < value ){
             current = current->next[i];
@@ -110,6 +103,7 @@ void insertion_en_ordre(t_d_list *list, int level, int value) {
         newCell->next[i] = current->next[i];
         current->next[i] = newCell;
     }
+
 }
 t_d_cell *recherche_0(t_d_list list, int value) {
     t_d_cell *current = list.head[0];
