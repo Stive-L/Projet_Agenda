@@ -8,7 +8,7 @@
 int main() {
 
     int niv_actu = 7;
-    int niv_final = 20;
+    int niv_final = 16;
 
     FILE *log_file = fopen("log.txt","w");
     char format[] = "%d\t%s\t%s\n" ;
