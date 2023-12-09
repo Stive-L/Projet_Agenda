@@ -3,26 +3,28 @@
 #include "cell.h"
 #include <math.h>
 #include "timer.h"
+#include <stdlib.h>
 
 int main() {
 
     int niv_actu = 7;
-    int niv_final = 16;
+    int niv_final = 20;
 
     FILE *log_file = fopen("log.txt","w");
     char format[] = "%d\t%s\t%s\n" ;
     int level;
     char *time_lvl0;
     char *time_all_levels;
-    // Boucle pour calculer le temps d'éxution
+    srand(time(NULL));
 
+    // Boucle pour calculer le temps d'éxution
     while (niv_actu <= niv_final){
+
         printf("Le niveau courant est %d\n", niv_actu);
 
         int nbr_cell = pow(2,niv_actu)-1;
         int tab_levels[nbr_cell];
         t_d_list *list_p2 = create_multi_level_list(niv_final);
-
         // Init les éléments du tab à 0
         for (int i = 0; i < nbr_cell;i++){
             tab_levels[i] = 0;
@@ -45,8 +47,8 @@ int main() {
 
         startTimer();
         for (int i = 0; i < 10000; i++){
-            t_d_cell * temp_niv0 = recherche_0(*list_p2,i);
-            //printf("%d",temp_niv0->value);
+            int nbr_aleatoire = (rand() % nbr_cell) + 1;
+            int temp_niv0 = recherche_0(*list_p2,nbr_aleatoire);
         }
         stopTimer();
         time_lvl0 = getTimeAsString(); // fonction du module timer
@@ -54,8 +56,8 @@ int main() {
 
         startTimer();
         for (int i = 0; i < 10000; i++){
-            t_d_cell * temp_niv0 = recherche_du_plus_haut(*list_p2,i);
-            //printf("%d",temp_niv0->value);
+            int nbr_aleatoire = (rand() % nbr_cell) + 1;
+            int temp_niv0 = recherche_du_plus_haut(*list_p2,nbr_aleatoire);
         }
         stopTimer();
         time_all_levels = getTimeAsString();
@@ -65,7 +67,10 @@ int main() {
         niv_actu += 1;
     }
     fclose(log_file);
-    /* Partie 2 (test niveau)
+
+
+    // Partie 2 (test)
+    /*
     int n = 7;
     int nbr_cell = pow(2,n)-1;
     int tab_levels[nbr_cell];
@@ -96,8 +101,9 @@ int main() {
     //display_all_levels(*list_p2);
     */
 
-    /* Test (partie 1)
-    printf("Hello, World!\n");
+
+    // Partie 1 (test)
+    /*
     int max_levels = 5;
     t_d_list *list = create_multi_level_list(max_levels);
     t_d_cell *cell = create_multi_level_cell(1, 5);
@@ -125,10 +131,11 @@ int main() {
 
     display_all_levels(*list);
     display_cells_at_level(*list,1);
-    cell = recherche_du_plus_haut(*list, 25);
-     printf("%d", cell->value);
-     */
 
+    int test_recherche_0 = recherche_0(*list,20);
+    printf("Recherche niveau 0 : %d\n", test_recherche_0);
+    int test_recherche_haut = recherche_du_plus_haut(*list,20);
+    printf("Recherche niveau_plus_haut : %d", test_recherche_haut);
+    */
     return 0;
-
 }

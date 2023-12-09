@@ -105,14 +105,19 @@ void insertion_en_ordre(t_d_list *list, int level, int value) {
     }
 
 }
-t_d_cell *recherche_0(t_d_list list, int value) {
+int recherche_0(t_d_list list, int value) {
     t_d_cell *current = list.head[0];
     while (current != NULL && current->value != value) {
         current = current->next[0];
     }
-    return current;
+    if (current  == NULL){
+        return 0;
+    }
+    else{
+        return 1;
+    }
 }
-t_d_cell *recherche_du_plus_haut(t_d_list list, int value) {
+int recherche_du_plus_haut(t_d_list list, int value) {
     int currentLevel = list.max_levels - 1;
 
     t_d_cell *current = list.head[currentLevel];
@@ -124,15 +129,20 @@ t_d_cell *recherche_du_plus_haut(t_d_list list, int value) {
 
         // Si la valeur est trouvée au niveau actuel
         if (current != NULL && current->value == value) {
-            return current; // Retournez la cellule correspondante
+            return 1; // Retournez la cellule correspondante
         }
 
         // Si la valeur n'est pas trouvée, descendez d'un niveau
         currentLevel--;
         if (currentLevel >= 0) {
-            current = list.head[currentLevel];
+            if (current == NULL) {
+                current = list.head[currentLevel];
+            }
+            else{
+                current = current->next[currentLevel];
+            }
         }
     }
 
-    return NULL;
+    return 0;
 }
