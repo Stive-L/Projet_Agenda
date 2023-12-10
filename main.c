@@ -1,10 +1,11 @@
-#include <stdio.h>
-#include "list.h"
-#include "cell.h"
+#include "list.c"
+#include "cell.c"
+#include "contact.c"
+#include "timer.c"
 #include <math.h>
-#include "timer.h"
 #include <stdlib.h>
-#include "contact.h"
+#include <stdio.h>
+
 
 int main() {
     // Partie 2 ( Test complexité)
