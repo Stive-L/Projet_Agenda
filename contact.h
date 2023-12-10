@@ -37,7 +37,7 @@ typedef struct RendezVous {
     struct RendezVous* suivant;
 } RendezVous;
 
-
+4
 typedef struct rdv_list {
     RendezVous *tete;
 }rdv_list;
