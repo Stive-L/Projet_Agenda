@@ -26,51 +26,36 @@ typedef struct {
 typedef struct {
     int heure;
     int minute;
-} Heure;
+} Temps;
 
 // Structure pour un rendez-vous
-typedef struct {
+typedef struct RendezVous {
     Date date;
-    Heure heure_debut;
-    Heure duree;
+    Temps heure_debut;
+    Temps duree;
     char* objet;
-    //struct RendezVous* suivant;
+    struct RendezVous* suivant;
 } RendezVous;
 
-/*
-typedef struct RendezVousChaine{
-    RendezVous rdv;
-    struct RendezVousChaine *next
-}RendezVousChaine;
- */
+
+typedef struct rdv_list {
+    RendezVous *tete;
+}rdv_list;
+
 
 typedef struct EntreeAgenda {
     Contact contact;
-    struct RendezVous **rdv;
-}EntreeAgenda;
+    rdv_list  listeRendezVous;  // Liste simplement chaînée de rendez-vous
+    struct s_d_cell **next;
+} Agenda_cell, *p_agenda_cell;
 
-// List à niveaux qui stock les entrees d'agenda
-typedef struct listagenda {
-    int max_levels;     // 4 max levels
-    EntreeAgenda ** head;
-} listagenda;
-/*
-typedef struct EntreeAgenda {
-    Contact contact;
-    RendezVous* listeRendezVous;  // Liste simplement chaînée de rendez-vous
-    struct EntreeAgenda* suivant;
-} EntreeAgenda;
 
-typedef struct s_d_cellagenda {
-    Contact contact;
-    RendezVous* listeRendezVous;  // Liste simplement chaînée de rendez-vous
-    struct s_d_cellagenda** next;  // Tableau de pointeurs vers la cellule suivante pour chaque niveau
-} t_d_cellagenda;
 
-// Structure pour la liste à plusieurs niveaux
-typedef struct s_d_listagenda {
+typedef struct s_d_listagenda {  // List à niveaux qui stock les entrees d'agenda
     int max_levels;             // Nombre maximum de niveaux dans la liste
-    t_d_cellagenda** head;      // Tableau de pointeurs vers la tête de chaque niveau
-} t_d_listagenda;
-*/
+    Agenda_cell ** head;      // Tableau de pointeurs vers la tête de chaque niveau
+} s_d_listagenda;
+int comparerNiveau(const char* , const char* , int );
+void insererCellule(s_d_listagenda*, p_agenda_cell );
+void creerEtInsererContact(s_d_listagenda* , const char* , const char* );
 #endif //PROJET_AGENDA_CONTACT_H
