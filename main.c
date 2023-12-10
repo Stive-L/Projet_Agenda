@@ -7,6 +7,8 @@
 
 int main() {
 
+    // Partie 2 ( Test complexité)
+    /*
     int niv_actu = 7;
     int niv_final = 16;
 
@@ -44,20 +46,21 @@ int main() {
             insertion_en_ordre(list_p2,tab_levels[i],i+1);
         }
 
-
+        // Recherche niveau 0
         startTimer();
-        for (int i = 0; i < 10000; i++){
-            int nbr_aleatoire = (rand() % nbr_cell) + 1;
-            int temp_niv0 = recherche_0(*list_p2,nbr_aleatoire);
+        for (int i = 0; i < 10000; i++){ // Une boucle for de allant de 0 à 10 000
+            int nbr_aleatoire = (rand() % nbr_cell) + 1; // Nombre aléatoire compris entre 1 et le nombre de cellules
+            int temp_niv0 = recherche_0(*list_p2,nbr_aleatoire); // Recherche au niveau 0 du nbr_aléatoire
         }
         stopTimer();
         time_lvl0 = getTimeAsString(); // fonction du module timer
         printf("Le temps de recherche au niveau 0 est %s\n", getTimeAsString());
 
+        // Recherche à partir des niveaux supérieurs
         startTimer();
-        for (int i = 0; i < 10000; i++){
-            int nbr_aleatoire = (rand() % nbr_cell) + 1;
-            int temp_niv0 = recherche_du_plus_haut(*list_p2,nbr_aleatoire);
+        for (int i = 0; i < 10000; i++){ // Une boucle for de allant de 0 à 10 000
+            int nbr_aleatoire = (rand() % nbr_cell) + 1; // Nombre aléatoire compris entre 1 et le nombre de cellules
+            int temp_niv0 = recherche_du_plus_haut(*list_p2,nbr_aleatoire); // Recherche à partir des niveaux supérieurs du nbr_aléatoire
         }
         stopTimer();
         time_all_levels = getTimeAsString();
@@ -67,42 +70,44 @@ int main() {
         niv_actu += 1;
     }
     fclose(log_file);
+    */
 
 
-    // Partie 2 (test)
+    // Partie 2 (Test réalisation liste niveaux 2^n -1)
     /*
-    int n = 7;
-    int nbr_cell = pow(2,n)-1;
-    int tab_levels[nbr_cell];
-    t_d_list *list_p2 = create_multi_level_list(n);
-    for (int i = 0; i < nbr_cell;i++){
+    int n = 3;
+    int nbr_cell = pow(2,n)-1; // Nombre de cellules
+    int tab_levels[nbr_cell]; // On définit un tableau avec le nombre de cellules
+    t_d_list *list_p2 = create_multi_level_list(n); // On crée une liste de "n" niveaux
+
+    for (int i = 0; i < nbr_cell;i++){ // Remplissage du tableau avec des 0 pour après
         tab_levels[i] = 0;
-        //printf("%d",tab_levels[i]);
+
     }
     printf("\n");
-    // Remplir le tableau
-    for (int step = 2; step <= nbr_cell; step *= 2) {
-        int temp = step-1;
-        while (temp <=nbr_cell-1){
-            tab_levels[temp] += 1;
-            temp += step;
+    // Remplir le tableau en suivant la méthode de M.Flasques
+    for (int step = 2; step <= nbr_cell; step *= 2) { // Une boucle for avec un pas de 2
+        int temp = step-1; // Initialisation de la variable temp qui correspond à l'indice du tableau
+        while (temp <=nbr_cell-1){ // Tant que temp est inférieur ou égale aux nombre de cellules alors
+            tab_levels[temp] += 1; // On ajoute +1 à la valeur de l'indice temp du tableau
+            temp += step; // Temp est égal à lui-même + le pas
         }
 
     }
 
-    for (int i = 0; i < nbr_cell;i++){
-        printf("%d",tab_levels[i]);
+    for (int i = 0;i < nbr_cell;i++){ // Une boucle for qui parcourt le nombre de cellule
+        insertion_en_ordre(list_p2,tab_levels[i],i+1); // On transforme ensuite les valeurs du tableau en cellule avec la solution de M.Flasques
     }
+    display_all_levels(*list_p2);
 
-    //display_all_levels(*list_p2);
-    for (int i = 0;i < nbr_cell;i++){
-        insertion_en_ordre(list_p2,tab_levels[i],i+1);
-    }
-    //display_all_levels(*list_p2);
+    int test_recherche_0 = recherche_0(*list_p2,2); // Test recherche au niveau 0
+    printf("Recherche niveau 0 : %d\n", test_recherche_0);
+    int test_recherche_haut = recherche_du_plus_haut(*list_p2,8); // Test recherche à partir des niveaux supérieurs
+    printf("Recherche niveau_plus_haut : %d", test_recherche_haut);
     */
 
 
-    // Partie 1 (test)
+    // Partie 1 (Test)
     /*
     int max_levels = 5;
     t_d_list *list = create_multi_level_list(max_levels);
@@ -129,13 +134,12 @@ int main() {
     insertion_en_ordre(list,4,32);
     insertion_en_ordre(list,4,59);
 
+    // Affichage de tous les niveaux
     display_all_levels(*list);
-    display_cells_at_level(*list,1);
 
-    int test_recherche_0 = recherche_0(*list,20);
-    printf("Recherche niveau 0 : %d\n", test_recherche_0);
-    int test_recherche_haut = recherche_du_plus_haut(*list,20);
-    printf("Recherche niveau_plus_haut : %d", test_recherche_haut);
+    // affichage du niveau 1
+    display_cells_at_level(*list,1);
     */
+
     return 0;
 }

@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cell.h"
+
 t_d_cell *create_multi_level_cell(int value, int level) {
+    // On alloue dynamiquement
     t_d_cell *cell = malloc(sizeof(t_d_cell));
     if (cell == NULL) {
         // Gérer les erreurs de mémoire
