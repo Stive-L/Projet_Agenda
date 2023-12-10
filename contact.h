@@ -37,7 +37,7 @@ typedef struct RendezVous {
     struct RendezVous* suivant;
 } RendezVous;
 
-4
+
 typedef struct rdv_list {
     RendezVous *tete;
 }rdv_list;
@@ -55,7 +55,5 @@ typedef struct s_d_listagenda {  // List à niveaux qui stock les entrees d'agen
     int max_levels;             // Nombre maximum de niveaux dans la liste
     Agenda_cell ** head;      // Tableau de pointeurs vers la tête de chaque niveau
 } s_d_listagenda;
-int comparerNiveau(const char* , const char* , int );
-void insererCellule(s_d_listagenda*, p_agenda_cell );
-void creerEtInsererContact(s_d_listagenda* , const char* , const char* );
+
 #endif //PROJET_AGENDA_CONTACT_H
