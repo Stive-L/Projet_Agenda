@@ -1,10 +1,10 @@
 //
 // Created by lzcst on 26/10/2023.
 //
-#include "list.c"
-#include "cell.c"
-#include "contact.c"
-#include "timer.c"
+#include "src/list.c"
+#include "src/cell.c"
+#include "src/contact.c"
+#include "src/timer.c"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

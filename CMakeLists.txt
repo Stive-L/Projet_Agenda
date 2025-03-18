@@ -4,7 +4,7 @@ project(Projet_Agenda C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(Projet_Agenda main.c
-        cell.c
-        cell.h
-        list.c
-        list.h timer.c timer.h contact.c contact.h)
+        src/cell.c
+        include/cell.h
+        src/list.c
+        include/list.h src/timer.c include/timer.h src/contact.c include/contact.h)

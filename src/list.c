@@ -3,7 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "../include/list.h"
 t_d_list *create_multi_level_list(int max_levels) {
     // On aloue dynamiquement de la mémoire
     t_d_list *list = (t_d_list *)malloc(sizeof(t_d_list));

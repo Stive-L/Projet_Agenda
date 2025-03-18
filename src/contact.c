@@ -2,7 +2,7 @@
 // Created by Yeto.wrld on 11/25/2023.
 //
 
-#include "contact.h"
+#include "../include/contact.h"
 t_d_listAgenda * createAgenda(){
     t_d_listAgenda *Agenda = malloc(sizeof(t_d_listAgenda));
     Agenda->max_levels = 4;

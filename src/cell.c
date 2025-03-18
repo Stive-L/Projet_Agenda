@@ -3,7 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "cell.h"
+#include "../include/cell.h"
 
 t_d_cell *create_multi_level_cell(int value, int level) {
     // On alloue dynamiquement
