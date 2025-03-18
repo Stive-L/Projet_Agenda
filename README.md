@@ -1,11 +1,47 @@
-# Projet_Agenda
-Ce projet s’intitule “Gestion d’un Agenda”. Ce projet est notre projet semestriel (Semestre 3) du module : Algorithmique et structure de données 2.
-Le but étant de faire une application (sans interface graphique mais sur la console) permettant de gérer un agenda, en utilisant des structures de données, essentiellement avec des listes chaînées à niveaux.
-Vous allez retrouver dans ce dernier une programmation modulaire donc des fichiers sources et des headers.
+# Projet de Gestion d'Agenda
 
-Dans le main, nous avons mis en première plan une démonstration de la partie 2 pour calculer le temps de recherche avec différents niveaux.
+## Description
 
-Cependant, un peu plus bas dans le main sous forme commentaire, nous avons mis différentes démonstrations comme la création de la liste à niveaux 2^n - 1.
-Ainsi qu'une démonstration de la partie 1.
+Ce projet est une application en mode console permettant de gérer un agenda de manière simple et efficace, en s'appuyant notamment sur les listes chaînées. Il permet d'ajouter, consulter et organiser des contacts et des rendez-vous facilement.
 
-De plus, tout en bas du main, vous allez retrouver un test du menu concernant la partie 3.
+## Fonctionnalités
+
+- **Gestion des contacts et rendez-vous** :
+  - Ajouter, afficher et supprimer des contacts
+  - Ajouter, consulter et supprimer des rendez-vous
+  - Recherche intuitive avec complétion automatique
+- **Optimisation des recherches** pour un accès rapide aux données
+- **Sauvegarde et chargement** des données pour conserver l'agenda
+
+## Structure du Projet
+
+### 1. Modules principaux
+
+- **Gestion des contacts et des listes**
+  - `cell.h` / `cell.c` : Gestion des éléments de la liste
+  - `list.h` / `list.c` : Organisation et tri des contacts
+- **Gestion de l'agenda**
+  - `contact.h` / `contact.c` : Ajout et suppression des contacts et rendez-vous
+  - `timer.h` / `timer.c` : Outils de mesure des performances
+
+### 2. Fichiers source
+
+- **`main.c`** : Point d'entrée du programme
+- **`contact.c`** : Gestion des contacts et des rendez-vous
+- **`list.c`** : Gestion de la liste des contacts
+- **`timer.c`** : Analyse des performances
+
+## Commandes disponibles
+
+| Commande | Action |
+| -------- | -------------------------------- |
+| `1`      | Rechercher un contact |
+| `2`      | Ajouter un contact |
+| `3`      | Ajouter un rendez-vous |
+| `4`      | Supprimer un rendez-vous |
+| `5`      | Quitter le programme |
+| `6`      | Afficher les commandes disponibles |
+
+## Comparaison des performances
+
+L’application permet d’évaluer la rapidité d’accès aux contacts et rendez-vous en comparant différentes méthodes de recherche. Des tests sont effectués sur de grandes quantités de données pour mesurer l’efficacité.
